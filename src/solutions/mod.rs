@@ -8,3 +8,4 @@ pub mod sol6;
 pub mod sol7;
 pub mod sol8;
 pub mod sol9;
+pub mod sol11;
