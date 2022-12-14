@@ -66,20 +66,15 @@ impl Ord for DistressSignal {
 }
 
 pub fn solve_a() {
-    let input: Vec<(DistressSignal, DistressSignal)> = include_str!("inputs/input13.txt")
+    let input = include_str!("inputs/input13.txt")
+        .trim()
         .split("\n\n")
-        .map(|pair| {
-            let packets: Vec<&str> = pair.split('\n').collect();
-            (
-                DistressSignal::from(packets[0]),
-                DistressSignal::from(packets[1]),
-            )
-        })
-        .collect();
+        .flat_map(|pair| pair.split('\n').map(DistressSignal::from))
+        .collect::<Vec<DistressSignal>>();
 
     let mut ans = 0;
-    for (i, (p1, p2)) in input.iter().enumerate() {
-        if p1 <= p2 {
+    for (i, pair) in input.chunks_exact(2).enumerate() {
+        if pair[0] <= pair[1] {
             ans += i + 1;
         }
     }
@@ -89,6 +84,7 @@ pub fn solve_a() {
 
 pub fn solve_b() {
     let mut input = include_str!("inputs/input13.txt")
+        .trim()
         .split("\n\n")
         .flat_map(|pair| pair.split('\n').map(DistressSignal::from))
         .collect::<Vec<DistressSignal>>();
