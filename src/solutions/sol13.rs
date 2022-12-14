@@ -8,16 +8,15 @@ enum DistressSignal {
 
 impl From<&str> for DistressSignal {
     fn from(s: &str) -> Self {
-        serde_json::from_str::<serde_json::Value>(s).unwrap().into()
+        let json = serde_json::from_str::<serde_json::Value>(s).unwrap();
+        Self::from(json)
     }
 }
 
 impl From<serde_json::Value> for DistressSignal {
     fn from(json: serde_json::Value) -> Self {
         match json {
-            serde_json::Value::Array(arr) => {
-                Self::List(arr.into_iter().map(|val| val.into()).collect())
-            }
+            serde_json::Value::Array(arr) => Self::List(arr.into_iter().map(Self::from).collect()),
             serde_json::Value::Number(n) => Self::Int(n.as_i64().unwrap()),
             _ => panic!(),
         }
