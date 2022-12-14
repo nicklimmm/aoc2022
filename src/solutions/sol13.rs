@@ -88,6 +88,8 @@ pub fn solve_b() {
         .split("\n\n")
         .flat_map(|pair| pair.split('\n').map(DistressSignal::from))
         .collect::<Vec<DistressSignal>>();
+
+    // To sequentially check valid divider insertions
     input.sort();
 
     let mut first_divider_done = false;
