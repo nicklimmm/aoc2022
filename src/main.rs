@@ -1,6 +1,6 @@
 use aoc2022::solutions;
 
 fn main() {
-    solutions::sol12::solve_a();
-    solutions::sol12::solve_b();
+    solutions::sol13::solve_a();
+    solutions::sol13::solve_b();
 }
