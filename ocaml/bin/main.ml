@@ -1,2 +1,2 @@
-let () = Ocaml.Day1.run_a ()
-let () = Ocaml.Day1.run_b ()
+let () = Ocaml.Day2.run_a ()
+let () = Ocaml.Day2.run_b ()
